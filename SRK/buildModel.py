@@ -1,3 +1,6 @@
+"""
+This code is to build the models from the given input file and  store the predcitions in a csv file.
+"""
 import numpy as np
 import pandas as pd
 from sklearn import ensemble
@@ -17,6 +20,7 @@ if __name__ == "__main__":
 	print "Dev, Val shape : ",dev_data.shape, val_data.shape
 	print "Sum of Dev and Val DV : ",sum(dev_data['DV']), sum(val_data['DV'])
 
+	# data preparation #
 	dev_X = np.array(dev_data)[:,2:-1]
 	val_X = np.array(val_data)[:,2:-1]
 	dev_y = np.array(dev_data['DV'])
@@ -26,35 +30,42 @@ if __name__ == "__main__":
 	dev_cookie_id = np.array( dev_data['cookie_id'] )
 	val_cookie_id = np.array( val_data['cookie_id'] )
 
+	# clean up RAM #
 	del dev_data
 	del val_data
 	import gc
 	gc.collect()
 
-
+	# running the model #
+	print "Running model.."
 	clf = ensemble.RandomForestClassifier(n_estimators=50, max_depth=10, min_samples_leaf=10, n_jobs=3, random_state=0)
 	clf.fit(dev_X, dev_y)
 	pred_dev_y = clf.predict_proba(dev_X)[:,1]
 	pred_val_y = clf.predict_proba(val_X)[:,1]
 
+	# cleaning up #
 	del dev_X
 	del val_X
 	gc.collect()
 
+	# AUC score on dev and val sample #
 	print "Dev AUC : ", roc_auc_score(dev_y, pred_dev_y)
 	print "Val AUC : ", roc_auc_score(val_y, pred_val_y)
 
+	# saving the predcitions into csv file #
+	print "Saving predctions.."
 	dev_pred_df = pd.DataFrame({'device_id':dev_device_id, 'cookie_id':dev_cookie_id, 'prediction':pred_dev_y, 'DV':dev_y})
 	val_pred_df = pd.DataFrame({'device_id':val_device_id, 'cookie_id':val_cookie_id, 'prediction':pred_val_y, 'DV':val_y})
 	dev_pred_df.to_csv("dev_predictions.csv", index=False)
 	val_pred_df.to_csv("val_predictions.csv", index=False)
 
+	# cleaning up #
 	del dev_pred_df
 	del val_pred_df
 	gc.collect()
 	
 
-	## Working on test data set #
+	## Working on test data set ##
 	print "Working on test file.."
 	test_data = pd.read_csv(test_file)
 	test_X = np.array(test_data)[:,2:-1]
