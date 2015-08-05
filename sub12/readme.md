@@ -1,5 +1,7 @@
 Order of files to run:
 
+0. getIDV.py - Code to create the initial set of variables.
+
 1. getIDV_IP.py - This is to produce intermediate files to form IP related variables 
 
 2. getIDV_IP2.py - This is to create variables realted to IP for dev, val and test
