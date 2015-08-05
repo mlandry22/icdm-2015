@@ -1,5 +1,7 @@
 Order of files to run:
 
+Please run splitDevValData.py, get_DV.py from SRK folder first before running the following scripts.  
+
 0. getIDV.py - Code to create the initial set of variables.
 
 1. getIDV_IP.py - This is to produce intermediate files to form IP related variables 
