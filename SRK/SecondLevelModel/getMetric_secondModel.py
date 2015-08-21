@@ -6,9 +6,9 @@ import numpy as np
 import pandas as pd
 from sklearn import metrics
 
-max_num_cookies = 5      # maximum number of cookies to get for a device using secondary method. This number includes UNKNOWN drawbridge handles as well 
-threshold_value = 0.35   # threshold value from the top predicted value till which the search is made. Ex: If the top predicted prob value is 1.0 and threshold is 0.2, get max_num_cookies cookies between 1 and 0.8
-best_cookie_handle_flag = 0 # flag if 1 will get the cookies of only the BEST KNOWN drawbridge handle. If set to 0, will get the cookies of all known drawbridge handle present inside the threshold
+#max_num_cookies = 5      # maximum number of cookies to get for a device using secondary method. This number includes UNKNOWN drawbridge handles as well 
+#threshold_value = 0.35   # threshold value from the top predicted value till which the search is made. Ex: If the top predicted prob value is 1.0 and threshold is 0.2, get max_num_cookies cookies between 1 and 0.8
+#best_cookie_handle_flag = 0 # flag if 1 will get the cookies of only the BEST KNOWN drawbridge handle. If set to 0, will get the cookies of all known drawbridge handle present inside the threshold
 
 def getFScore(actual_list, pred_list):
 	"""
