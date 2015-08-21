@@ -7,6 +7,7 @@ import xgboost as xgb
 
 if __name__ == "__main__":
 	val_file = "val_second_level.csv"
+	test_file = "test_second_level.csv"
 
 	val = pd.read_csv(val_file)
 	val_dv = np.array(val["DV"])
@@ -67,3 +68,15 @@ if __name__ == "__main__":
         val_pred_df = pd.DataFrame({'device_id':device_id_arr[1182988:], 'cookie_id':cookie_id_arr[1182988:], 'prediction':pred_val_y, 'DV':validate_y})
         dev_pred_df.to_csv("dev_predictions_m2.csv", index=False)
         val_pred_df.to_csv("val_predictions_m2.csv", index=False)
+
+	print "Working on the test file.."
+	test = pd.read_csv(test_file)
+        test_dv = np.array(test["DV"])
+        device_id_arr = np.array(test["device_id"])
+        cookie_id_arr = np.array(test["cookie_id"])
+
+	test = np.array(test.iloc[:,[3,5,6,7,8]])
+	xgtest = xgb.DMatrix(test)
+	pred_test_y = model.predict(xgtest)
+	test_pred_df = pd.DataFrame({'device_id':device_id_arr, 'cookie_id':cookie_id_arr, 'prediction':pred_test_y, 'DV':test_dv})
+	test_pred_df.to_csv("test_predictions_m2.csv", index=False)
