@@ -25,7 +25,7 @@ def getFScore(actual_list, pred_list):
 	coeff = 1.25
 	return coeff * ( (p*r) / ((beta_square*p)+r) ) 
 
-def getTopNCookies( pred_list_of_lists, n_cookies=5):
+def getTopNCookies( pred_list_of_lists, n_cookies=3):
 	"""
 	Function to get the top n cookies from the given list of lists. Each list consists of two elements. First element is the cookie_id and the second element is binary classification score. 
 	@param pred_list_of_lists : list of lists of cookies and scores
@@ -38,7 +38,7 @@ def getTopNCookies( pred_list_of_lists, n_cookies=5):
         key_list = np.sort(cookie_pred_dict.keys())[::-1]
 	prev_value = key_list[0]
         for value in key_list[:n_cookies]:
-		if prev_value - value < 0.15:
+		if prev_value - value < 0.05:
                 	pred_list.append(cookie_pred_dict[value])
 			#prev_value = value
 		else:
@@ -92,7 +92,7 @@ def getDrawbridgePred(pred_list, drawbridge_dict, cookie_draw_dict):
 		return new_pred_list
 			
 
-def getFScoreFromSecDict(actual_list, pred_list_of_lists, drawbridge_dict, cookie_draw_dict, n_cookies=5):
+def getFScoreFromSecDict(actual_list, pred_list_of_lists, drawbridge_dict, cookie_draw_dict, n_cookies=3):
 	"""
 	Function to get the F0.5 score from secondary dict
 	"""
