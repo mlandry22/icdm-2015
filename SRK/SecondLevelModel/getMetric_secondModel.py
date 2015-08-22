@@ -87,6 +87,7 @@ def getDrawbridgePred(pred_list, drawbridge_dict, cookie_draw_dict):
 	## else it is better to return "new_pred_list + unknown_list" always ##
 	## we can try submitting one in each case and compare the results :) ##
 	if new_pred_list == []:
+		print "Unknown"
 		return new_pred_list + unknown_list
 	else:
 		return new_pred_list
@@ -266,7 +267,7 @@ if __name__ == "__main__":
 	If the device_id is not present at all, write a dummy value ('id_10')
 	"""
 
-	"""	
+		
 	# Getting the submission file for test predictions #
 	print "Getting the submission file.."
 	sub_writer = csv.writer(sub_handle)
@@ -286,4 +287,3 @@ if __name__ == "__main__":
 		sub_writer.writerow([device_id,  cookie_list])
 	test_dv_handle.close()
 	sub_handle.close()	
-	"""
