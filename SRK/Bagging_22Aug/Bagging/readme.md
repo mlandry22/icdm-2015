@@ -7,6 +7,6 @@ Order of files to run
  5. buildModel_seed4567_d5.py
  6. buildModel_seed4567_d8.py
  
- doSampleAndMerge will create two different datasets for running models. Only the development sample varies.
+doSampleAndMerge will create two different datasets for running models. Only the development sample varies.
  
- buildModel*.py - these will run models on the created datasets
+buildModel*.py - these will run models on the created datasets
