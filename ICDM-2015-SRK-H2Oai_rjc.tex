@@ -1,0 +1,857 @@
+%\documentclass[journal,transmag]{IEEEtran}
+\documentclass[9pt, journal]{IEEEtran}
+\usepackage{float}
+\usepackage{graphicx}
+
+
+%% bare_jrnl_transmag.tex
+%% V1.4a
+%% 2014/09/17
+%% by Michael Shell
+%% see http://www.michaelshell.org/
+%% for current contact information.
+%%
+%% This is a skeleton file demonstrating the use of IEEEtran.cls
+%% (requires IEEEtran.cls version 1.8a or later) with an IEEE 
+%% Transactions on Magnetics journal paper.
+%%
+%% Support sites:
+%% http://www.michaelshell.org/tex/ieeetran/
+%% http://www.ctan.org/tex-archive/macros/latex/contrib/IEEEtran/
+%% and
+%% http://www.ieee.org/
+
+%%*************************************************************************
+%% Legal Notice:
+%% This code is offered as-is without any warranty either expressed or
+%% implied; without even the implied warranty of MERCHANTABILITY or
+%% FITNESS FOR A PARTICULAR PURPOSE! 
+%% User assumes all risk.
+%% In no event shall IEEE or any contributor to this code be liable for
+%% any damages or losses, including, but not limited to, incidental,
+%% consequential, or any other damages, resulting from the use or misuse
+%% of any information contained here.
+%%
+%% All comments are the opinions of their respective authors and are not
+%% necessarily endorsed by the IEEE.
+%%
+%% This work is distributed under the LaTeX Project Public License (LPPL)
+%% ( http://www.latex-project.org/ ) version 1.3, and may be freely used,
+%% distributed and modified. A copy of the LPPL, version 1.3, is included
+%% in the base LaTeX documentation of all distributions of LaTeX released
+%% 2003/12/01 or later.
+%% Retain all contribution notices and credits.
+%% ** Modified files should be clearly indicated as such, including  **
+%% ** renaming them and changing author support contact information. **
+%%
+%% File list of work: IEEEtran.cls, IEEEtran_HOWTO.pdf, bare_adv.tex,
+%%                    bare_conf.tex, bare_jrnl.tex, bare_conf_compsoc.tex,
+%%                    bare_jrnl_compsoc.tex, bare_jrnl_transmag.tex
+%%*************************************************************************
+
+
+% *** Authors should verify (and, if needed, correct) their LaTeX system  ***
+% *** with the testflow diagnostic prior to trusting their LaTeX platform ***
+% *** with production work. IEEE's font choices and paper sizes can       ***
+% *** trigger bugs that do not appear when using other class files.       ***                          ***
+% The testflow support page is at:
+% http://www.michaelshell.org/tex/testflow/
+
+
+
+%
+% If IEEEtran.cls has not been installed into the LaTeX system files,
+% manually specify the path to it like:
+% \documentclass[journal]{../sty/IEEEtran}
+
+
+
+% Some very useful LaTeX packages include:
+% (uncomment the ones you want to load)
+
+
+% *** CITATION PACKAGES ***
+%
+%\usepackage{cite}
+% cite.sty was written by Donald Arseneau
+% V1.6 and later of IEEEtran pre-defines the format of the cite.sty package
+% \cite{} output to follow that of IEEE. Loading the cite package will
+% result in citation numbers being automatically sorted and properly
+% "compressed/ranged". e.g., [1], [9], [2], [7], [5], [6] without using
+% cite.sty will become [1], [2], [5]--[7], [9] using cite.sty. cite.sty's
+% \cite will automatically add leading space, if needed. Use cite.sty's
+% noadjust option (cite.sty V3.8 and later) if you want to turn this off
+% such as if a citation ever needs to be enclosed in parenthesis.
+% cite.sty is already installed on most LaTeX systems. Be sure and use
+% version 5.0 (2009-03-20) and later if using hyperref.sty.
+% The latest version can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/cite/
+% The documentation is contained in the cite.sty file itself.
+
+
+% *** GRAPHICS RELATED PACKAGES ***
+%
+\ifCLASSINFOpdf
+  % \usepackage[pdftex]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../pdf/}{../jpeg/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.pdf,.jpeg,.png}
+\else
+  % or other class option (dvipsone, dvipdf, if not using dvips). graphicx
+  % will default to the driver specified in the system graphics.cfg if no
+  % driver is specified.
+  % \usepackage[dvips]{graphicx}
+  % declare the path(s) where your graphic files are
+  % \graphicspath{{../eps/}}
+  % and their extensions so you won't have to specify these with
+  % every instance of \includegraphics
+  % \DeclareGraphicsExtensions{.eps}
+\fi
+% graphicx was written by David Carlisle and Sebastian Rahtz. It is
+% required if you want graphics, photos, etc. graphicx.sty is already
+% installed on most LaTeX systems. The latest version and documentation
+% can be obtained at: 
+% http://www.ctan.org/tex-archive/macros/latex/required/graphics/
+% Another good source of documentation is "Using Imported Graphics in
+% LaTeX2e" by Keith Reckdahl which can be found at:
+% http://www.ctan.org/tex-archive/info/epslatex/
+%
+% latex, and pdflatex in dvi mode, support graphics in encapsulated
+% postscript (.eps) format. pdflatex in pdf mode supports graphics
+% in .pdf, .jpeg, .png and .mps (metapost) formats. Users should ensure
+% that all non-photo figures use a vector format (.eps, .pdf, .mps) and
+% not a bitmapped formats (.jpeg, .png). IEEE frowns on bitmapped formats
+% which can result in "jaggedy"/blurry rendering of lines and letters as
+% well as large increases in file sizes.
+%
+% You can find documentation about the pdfTeX application at:
+% http://www.tug.org/applications/pdftex
+
+% *** MATH PACKAGES ***
+%
+\usepackage[cmex10]{amsmath}
+% A popular package from the American Mathematical Society that provides
+% many useful and powerful commands for dealing with mathematics. If using
+% it, be sure to load this package with the cmex10 option to ensure that
+% only type 1 fonts will utilized at all point sizes. Without this option,
+% it is possible that some math symbols, particularly those within
+% footnotes, will be rendered in bitmap form which will result in a
+% document that can not be IEEE Xplore compliant!
+%
+% Also, note that the amsmath package sets \interdisplaylinepenalty to 10000
+% thus preventing page breaks from occurring within multiline equations. Use:
+%\interdisplaylinepenalty=2500
+% after loading amsmath to restore such page breaks as IEEEtran.cls normally
+% does. amsmath.sty is already installed on most LaTeX systems. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/amslatex/math/
+
+
+% *** SPECIALIZED LIST PACKAGES ***
+%
+\usepackage{algorithmic}
+% algorithmic.sty was written by Peter Williams and Rogerio Brito.
+% This package provides an algorithmic environment fo describing algorithms.
+% You can use the algorithmic environment in-text or within a figure
+% environment to provide for a floating algorithm. Do NOT use the algorithm
+% floating environment provided by algorithm.sty (by the same authors) or
+% algorithm2e.sty (by Christophe Fiorio) as IEEE does not use dedicated
+% algorithm float types and packages that provide these will not provide
+% correct IEEE style captions. The latest version and documentation of
+% algorithmic.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithms/
+% There is also a support site at:
+% http://algorithms.berlios.de/index.html
+% Also of interest may be the (relatively newer and more customizable)
+% algorithmicx.sty package by Szasz Janos:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/algorithmicx/
+
+
+% *** ALIGNMENT PACKAGES ***
+%
+\usepackage{array}
+% Frank Mittelbach's and David Carlisle's array.sty patches and improves
+% the standard LaTeX2e array and tabular environments to provide better
+% appearance and additional user controls. As the default LaTeX2e table
+% generation code is lacking to the point of almost being broken with
+% respect to the quality of the end results, all users are strongly
+% advised to use an enhanced (at the very least that provided by array.sty)
+% set of table tools. array.sty is already installed on most systems. The
+% latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/required/tools/
+
+
+% IEEEtran contains the IEEEeqnarray family of commands that can be used to
+% generate multiline equations as well as matrices, tables, etc., of high
+% quality.
+
+
+% *** SUBFIGURE PACKAGES ***
+%\ifCLASSOPTIONcompsoc
+%  \usepackage[caption=false,font=normalsize,labelfont=sf,textfont=sf]{subfig}
+%\else
+%  \usepackage[caption=false,font=footnotesize]{subfig}
+%\fi
+% subfig.sty, written by Steven Douglas Cochran, is the modern replacement
+% for subfigure.sty, the latter of which is no longer maintained and is
+% incompatible with some LaTeX packages including fixltx2e. However,
+% subfig.sty requires and automatically loads Axel Sommerfeldt's caption.sty
+% which will override IEEEtran.cls' handling of captions and this will result
+% in non-IEEE style figure/table captions. To prevent this problem, be sure
+% and invoke subfig.sty's "caption=false" package option (available since
+% subfig.sty version 1.3, 2005/06/28) as this is will preserve IEEEtran.cls
+% handling of captions.
+% Note that the Computer Society format requires a larger sans serif font
+% than the serif footnote size font used in traditional IEEE formatting
+% and thus the need to invoke different subfig.sty package options depending
+% on whether compsoc mode has been enabled.
+%
+% The latest version and documentation of subfig.sty can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/subfig/
+
+
+% *** FLOAT PACKAGES ***
+%
+\usepackage{fixltx2e}
+% fixltx2e, the successor to the earlier fix2col.sty, was written by
+% Frank Mittelbach and David Carlisle. This package corrects a few problems
+% in the LaTeX2e kernel, the most notable of which is that in current
+% LaTeX2e releases, the ordering of single and double column floats is not
+% guaranteed to be preserved. Thus, an unpatched LaTeX2e can allow a
+% single column figure to be placed prior to an earlier double column
+% figure. The latest version and documentation can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/base/
+
+
+\usepackage{stfloats}
+% stfloats.sty was written by Sigitas Tolusis. This package gives LaTeX2e
+% the ability to do double column floats at the bottom of the page as well
+% as the top. (e.g., "\begin{figure*}[!b]" is not normally possible in
+% LaTeX2e). It also provides a command:
+%\fnbelowfloat
+% to enable the placement of footnotes below bottom floats (the standard
+% LaTeX2e kernel puts them above bottom floats). This is an invasive package
+% which rewrites many portions of the LaTeX2e float routines. It may not work
+% with other packages that modify the LaTeX2e float routines. The latest
+% version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/sttools/
+% Do not use the stfloats baselinefloat ability as IEEE does not allow
+% \baselineskip to stretch. Authors submitting work to the IEEE should note
+% that IEEE rarely uses double column equations and that authors should try
+% to avoid such use. Do not be tempted to use the cuted.sty or midfloat.sty
+% packages (also by Sigitas Tolusis) as IEEE does not format its papers in
+% such ways.
+% Do not attempt to use stfloats with fixltx2e as they are incompatible.
+% Instead, use Morten Hogholm'a dblfloatfix which combines the features
+% of both fixltx2e and stfloats:
+%
+% \usepackage{dblfloatfix}
+% The latest version can be found at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/dblfloatfix/
+
+
+%\ifCLASSOPTIONcaptionsoff
+%  \usepackage[nomarkers]{endfloat}
+% \let\MYoriglatexcaption\caption
+% \renewcommand{\caption}[2][\relax]{\MYoriglatexcaption[#2]{#2}}
+%\fi
+% endfloat.sty was written by James Darrell McCauley, Jeff Goldberg and 
+% Axel Sommerfeldt. This package may be useful when used in conjunction with 
+% IEEEtran.cls'  captionsoff option. Some IEEE journals/societies require that
+% submissions have lists of figures/tables at the end of the paper and that
+% figures/tables without any captions are placed on a page by themselves at
+% the end of the document. If needed, the draftcls IEEEtran class option or
+% \CLASSINPUTbaselinestretch interface can be used to increase the line
+% spacing as well. Be sure and use the nomarkers option of endfloat to
+% prevent endfloat from "marking" where the figures would have been placed
+% in the text. The two hack lines of code above are a slight modification of
+% that suggested by in the endfloat docs (section 8.4.1) to ensure that
+% the full captions always appear in the list of figures/tables - even if
+% the user used the short optional argument of \caption[]{}.
+% IEEE papers do not typically make use of \caption[]'s optional argument,
+% so this should not be an issue. A similar trick can be used to disable
+% captions of packages such as subfig.sty that lack options to turn off
+% the subcaptions:
+% For subfig.sty:
+% \let\MYorigsubfloat\subfloat
+% \renewcommand{\subfloat}[2][\relax]{\MYorigsubfloat[]{#2}}
+% However, the above trick will not work if both optional arguments of
+% the \subfloat command are used. Furthermore, there needs to be a
+% description of each subfigure *somewhere* and endfloat does not add
+% subfigure captions to its list of figures. Thus, the best approach is to
+% avoid the use of subfigure captions (many IEEE journals avoid them anyway)
+% and instead reference/explain all the subfigures within the main caption.
+% The latest version of endfloat.sty and its documentation can obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/endfloat/
+%
+% The IEEEtran \ifCLASSOPTIONcaptionsoff conditional can also be used
+% later in the document, say, to conditionally put the References on a 
+% page by themselves.
+
+
+% *** PDF, URL AND HYPERLINK PACKAGES ***
+%
+%\usepackage{url}
+% url.sty was written by Donald Arseneau. It provides better support for
+% handling and breaking URLs. url.sty is already installed on most LaTeX
+% systems. The latest version and documentation can be obtained at:
+% http://www.ctan.org/tex-archive/macros/latex/contrib/url/
+% Basically, \url{my_url_here}.
+
+
+% *** Do not adjust lengths that control margins, column widths, etc. ***
+% *** Do not use packages that alter fonts (such as pslatex).         ***
+% There should be no need to do such things with IEEEtran.cls V1.6 and later.
+% (Unless specifically asked to do so by the journal or conference you plan
+% to submit to, of course. )
+
+
+% correct bad hyphenation here
+%\hyphenation{op-tical net-works semi-conduc-tor}
+
+
+\begin{document}
+%
+% paper title
+% Titles are generally capitalized except for words such as a, an, and, as,
+% at, but, by, for, in, nor, of, on, or, the, to and up, which are usually
+% not capitalized unless they are the first or last word of the title.
+% Linebreaks \\ can be used within to get better formatting as desired.
+% Do not put math or special symbols in the title.
+
+\title{Multiple-layer Classification: ICDM 2015 Drawbridge Cross-Device Connections Competition}
+
+% author names and affiliations
+% transmag papers use the long conference author name format.
+\author{Mark Landry, Sudalai Rajkumar, Robert Chong
+
+\thanks{Mark Landry is with H2O, Mountain View, CA, USA.
+Sudalai Rajkumar S is with Tiger Analytics, Chennia, India.
+Robert Chong is with the University of Texas at Austin, Applied Research Lab.}}
+
+% for Transactions on Magnetics papers, we must declare the abstract and
+% index terms PRIOR to the title within the \IEEEtitleabstractindextext
+% IEEEtran command as these need to go into the title area created by
+% \maketitle.
+% As a general rule, do not put math, special symbols or citations
+% in the abstract or keywords.
+
+\IEEEtitleabstractindextext{
+\begin{abstract}
+This paper outlines a numerical recipe used to solve the ICDM 2015 competition to associate devices and cookies. 
+The presented model utilizes binomial classification at three stages. 
+The first stage imposed a shared IP address constraint to produce an initial set of candidate matches. 
+The second stage utilized gradient boosted machines with 90 calculated features, which became the focal point for solving the problem.
+The final classification reassessed the probabilities of the prior stage and was customized to fit specific competition dynamics.
+Note - Mark or Sudalai, can we add some performance metrics..AUC, F-Score, etc? This information is useful to quickly demonstate efficacy.
+\end{abstract}
+}
+
+% Note that keywords are not normally used for peerreview papers.
+%\begin{IEEEkeywords}
+%binomial classification, gradient boosted machines, quantile regression, wind forecasting, ICDM 2015
+%\end{IEEEkeywords}}
+
+
+
+% make the title area
+\maketitle
+
+
+% To allow for easy dual compilation without having to reenter the
+% abstract/keywords data, the \IEEEtitleabstractindextext text will
+% not be used in maketitle, but will appear (i.e., to be "transported")
+% here as \IEEEdisplaynontitleabstractindextext when the compsoc 
+% or transmag modes are not selected <OR> if conference mode is selected 
+% - because all conference papers position the abstract like regular
+% papers do.
+\IEEEdisplaynontitleabstractindextext
+% \IEEEdisplaynontitleabstractindextext has no effect when using
+% compsoc or transmag under a non-conference mode.
+
+
+% For peer review papers, you can put extra information on the cover
+% page as needed:
+% \ifCLASSOPTIONpeerreview
+% \begin{center} \bfseries EDICS Category: 3-BBND \end{center}
+% \fi
+%
+% For peerreview papers, this IEEEtran command inserts a page break and
+% creates the second title. It will be ignored for other modes.
+%\IEEEpeerreviewmaketitle
+
+
+\section{Introduction}
+As the world becomes more interconnected, a duality between privacy and the need to provide tailored, near real-time advertisements becomes apparent. 
+Consumers within the last decade have heavily gravitated from desktops to mobile devices. 
+This trend has weakened the use of traditional, desktop cookies to identify and track consumers. 
+Advertisers and publishers have taken note of this trend and started to implement cross-device targeting to identify consumers as they alternate between desktop computers, smartphones and tablets. 
+One of the challenges in cross-device targeting is to be cognizant of the consumer’s privacy rights. 
+Several companies require consumers to authenticate against a known id, which allows a direct connection to be established for a consumer amongst all their cross-devices. 
+However, in this competition, we were not provided data at this granular level. 
+Instead, we were provided with multiple sources of data that allowed an inferential relationship to be determined for a consumer amongst their cross-devices. 
+
+This paper describes the approach of team H2O.ai and SRK, which finished in 10th place in the public and private leaderboard.
+We treated the problem as binomial classification of a general cookie match (with respect to each individual device) and created features specific to each candidate device:cookie match. (Note - this last sentence isn't coming across as clear as I think it could).
+
+\section{Methods}
+\subsection{Competition Setup}
+The goal of the competition was to identify devices (e.g. phones) and cookies (e.g. desktop computers) that belong to the same user.
+The problem formulation was to provide a list of one or more cookies (from a list of 2.18 million) for each 61,156 devices.
+Training data consisted of characteristics of the devices and cookies, IP history, and website history (properties). 
+A Drawbridge handle represented the ground truth for device and cookie matches. 
+Devices containing a valid Drawbridge handle served as the training set, and those for which the handle was not provided were the test set. 
+Standard classification focuses on a supervised history of the entity for which predictions are desired. This competition setup encouraged handling the problem by finding the general properties of a match irrespective of the specific devices and cookies.
+
+A Drawbridge handle was present for most of the cookies. Handling of cookies with a missing Drawbridge handle became important. Though it was ambiguous what a missing Drawbridge handle represented, it could be observed that in nearly all cases, these cookies were not matches. 
+Incorporating this observation into our modeling yielded a meaningful improvement in our solution. Additionally, Drawbridge handles that would not have ordinarily been chosen by the original classifier were later selected if it shared a Drawbridge handle as a highly probable cookie. (Note...bit wordy here)
+
+Our team focused on all dimensions of the provided data, but found minimal gain in the website history. Relative IP history proved to be the most useful.
+
+\subsection{Modeling}
+\subsubsection{IP Commonality: Pruning Data}
+
+With a potential 2.18 million matches for any given device, some method of pruning the data set is (Note...was?) advantageous. 
+Our team chose IP commonality as that method. We observed that 98.16% of cookies that shared a Drawbridge handle with the known training devices also shared an IP address.
+Thus, applying this filter dropped our maximum recall to 98.16% but made the problem more tractable. 
+To keep feature processing times practical, we also constrained our list of cookies per IP address to a maximum of 30 at this stage.
+This choice caused another slight decrease in the maximum possible recall, but we found the size tradeoff to be worthwhile. In addition, a gap model to target some of the cookies dropped at this stage was later added (See Section 2.2.5). 
+Table 1 summarizes the impact of these two decisions on maximum recall and processing size.  
+
+\subsubsection{Device-Cookie Classification, Stage 1}
+Filtering the prospective device:cookie combinations to those that shared an IP address yielded 7.45 million training records and 3.11 million test records. (Sentence fragment...might need to reword)
+From those records, we divided the training data: 80% as a development set and 20% as a validation set. 
+We applied negative subsampling to the majority class at approximately 6:1 ratio, yielding 1.11M training examples for fitting the model. (Do we need to define what is negative subsampling?)
+
+We used gradient boosted machines, specifically the extreme boosting method in XGBoost, to fit our main binomial classification model at this stage.
+Decision tree models were very familiar to our team and a good fit for our feature generation methods, specifically robustness to collinear regressors. 
+Our models at this stage were internally judged on AUC which was consistently high. Global AUC at this stage (which differs from the per-device AUC metric of the competition) was consistently 0.95
+
+
+%It was initially observed that IP addresses utilized by three or fewer cookies often led to the correct cookie. This formed the basis of our initial model, and we continued to refine that concept, but creating features that bridged other concepts, but focused on the sparsity of the cookie matches.
+%This was later quantified as a feature that immediately ranked the highest on relative influence into our ensembled trees models: the total number of cookies that shared the particular IP address. It was inversely correlated with a positive match, where a value of 1 was a match 83.9\% of the time.
+%The final set of features that were most important were those that divided the sum of IP characteristics from the IP shared with the device in question by the sum of the characteristics of all IPs. C3 was the most important, but C1-C5 all had a Pearson correlation with the target between 0.447 and 0.509, all of which are higher than any other feature in our final set. 
+%This set favors cookies that spend most or all their time on IP addresses shared with the respective device.
+
+
+\subsubsection{Device-Cookie Classification, Stage 2}
+The first stage of classification included no problem-specific techniques.
+We used a second model to combine the probability predictions from the first stage with information about Drawbridge handles.
+Drawbridge handles were provided, and in many cases multiple cookies shared a Drawbridge handle. 
+So in addition to creating handle-specific features as described in Section 3.1.2, our second stage model inserted additional device:cookie pairs corresponding to highly probable Drawbridge handles from the first stage model. 
+Also, it was observed that cookies with a Drawbridge handle value of -1 had no impact in our scores, and that when we submitted a model with no such cookies, the score remained the same.
+Therefore, our intention for the second model was to create features that would cause the model to decrease estimates for cookies with a handle value of -1.
+
+Ideally, the first stage model would have been run using a method such as k-fold cross-validation so that we would have access to out-of-sample estimates for all data in our development set.
+However, we added the second stage model late in the competition and chose to subdivide the validation set of the first stage into another development:validation set, again in an 80\%:20\% ratio.
+This second stage model was formulated identically to the first, as binary classification of a general device:cookie match, using XGBoost. 
+Final global AUC at this stage was approximately 0.995. 
+
+
+\subsubsection{Gap Model: Device-Device}
+Due to filters applied in the initial step, as described in Section 2.2.1, we had devices in the test set that had no applicable cookie and devices with only a cookie containing a -1 Drawbridge handle.
+Our first attempt of using larger hardware and relaxing the threshold on cookies per IP; however, it still took too long to be effective.
+So, we created a model that used devices sharing a common IP. This model was setup as binary classification to find the best device match and then use all cookies associated with that device.
+Gradient boosted machines were used for this model as well, specifically the H2O implementation. Due to timing constraints, we used minimal training data and no validation data, so our only measurable result was leaderboard improvement, which showed the model to have a small, but meaningful improvement.
+
+\subsubsection{Final Selection}
+A separate model was utilized to choose the best cookies, given the probabilities from the prior stage. 
+Initially this was a simple method that chose a single threshold or the top-ranking cookie. 
+A later version utilized cookies with a probability over 0.9, or those within 0.05 of the highest probability cookie per device, which increased recall for uncertain devices.
+
+
+\section{Calculations}
+\subsection{Features: Cookie-Device, Stage 1}
+We provided all features available directly from the applicable cookie data and device data.
+But our most useful features were those that utilized IP behavior by cookie and device.
+The best of those features compared the behavior of the cookie or device on the particular IP that was shared to the behavior of the cookie or device across all IPs.
+
+For a given device-cookie combination, we obtained all the IPs that are common to both device and cookie, say Common IPs. 
+Also we obtained all the IPs that are associated with the cookie, say Cookie IPs. 
+Each IP had a set of attributes such as ip-freq-count and anonymized variables like idxip-anonymous-c1 and idxip-anonymous-c2. 
+We summed up all these atrribute values for all the IPs present in both Common IPs and the Cookie IPs separately and then finally took a ratio of it.
+
+The most useful feature to our GBM, as measured by relative influence, was cookie-c3-common-ip-by-all-ip, which belonged to a class of features that all possessed much higher Pearson correlation with our target than any other feature (0.447 - 0.504 vs highest other at 0.322)
+\\*
+\\* (this section will be properly formalized for camera-ready version)
+\\*
+\begin{footnotesize}
+\\*cookie freq common ip by all ip = 
+\\*Summation of ip freq count of all ips present in "Common IPs" 
+\\*/ Summation of ip freq count of all ips present in Cookie IPs
+\\*
+\\*cookie c1 common ip by all ip = Summation of idxip anonymous c1 
+\\*of all ips present in "Common IPs" / Summation of idxip anonymous c1 
+\\*of all ips present in "Cookie IPs"
+\\*
+\\*cookie c2 common ip by all ip = Summation of idxip anonymous c2
+\\*of all ips present in "Common IPs" / Summation of idxip anonymous c2
+\\*of all ips present in "Cookie IPs"
+\\*
+\\*cookie c3 common ip by all ip = Summation of idxip anonymous c3
+\\*of all ips present in "Common IPs" / Summation of idxip anonymous c3
+\\*of all ips present in "Cookie IPs"
+\\*
+\\*cookie c4 common ip by all ip = Summation of idxip anonymous c4
+\\*of all ips present in "Common IPs" / Summation of idxip anonymous c4 
+\\*of all ips present in "Cookie IPs"
+\\*
+\\*cookie c5 common ip by all ip = Summation of idxip anonymous c5
+\\*of all ips present in "Common IPs" / Summation of idxip anonymous c5
+\\*of all ips present in "Cookie IPs"
+
+Common IPs = IPs associated with the given device (intersection) IPs associated with the given cookie
+Cookie IPs = IPs associated with the given cookie
+\end{footnotesize}
+
+The reason we think these features worked well is that, these features capture the percentage contribution of Common IPs to the Cookie IPs. 
+For example, if the summation of frequency of Common IPs is a high percentage of summation of frequency of Cookie IPs, then it means that those remaining IPs present in the Cookie IPs have very low frequency counts and hence very less contribution, so there may be a high probability of given device-cookie pair to be the correct one. 
+Alternatively, if the summation of frequency of Common IPs is a less percentage of summation of frequency of Cookie IPs, then it means that the remaining IPs present in the Cookie IPs contribute to most part of the frequency and so the given device-cookie may not be the right choice.
+
+\subsection{Features: Cookie-Device, Stage 2}
+The purpose of the second stage model was to incorporate Drawbridge handle information in the cookie data. 
+Prior to calculating features at this stage, we added any cookies not already included that shared a Drawbridge handle with cookies from that first model.
+The two main features of this second stage were to sum the number of cookies and total probability per handle per device, using the first stage model predictions.
+Also a binary indicator was used for cookies containing a -1 handle. 
+Since there were no known positive examples containing a -1 Drawbridge handle ID, this feature caused the model to predict low probabilities for such cookies, which was the desired effect.
+
+
+\subsection{Features: Device-Device Gap Model}
+With limited time, only basic count-based features were used in the device-device model.
+Only devices for which no valid cookie was yielded by our cookie-device stage 2 model were used in calculations. 
+The IP ids of these devices were obtained and all other devices using those same IP ids. 
+Counts of common IP addresses and total IP addresses per device were used as features.
+
+\subsection{Unused Features: Property Information}
+We calculated two instances of cosine similarity between cookies and devices using property information, but neither was helpful for our models, and neither was used in the final modeling process.
+The first method used raw property information with a binary presence/absence flag (as opposed to frequency counts).
+Using the property IDs directly led to very little overlap, so cosine similarity in this matrix was often 0, even for positive matches. We found this feature to be minimally correlated with the target.
+Prior to calculating the similarity for every device in our validation set, we analyzed potential usage of a 10\% sample by number of potential matches and as a ratio of the maximum similarity, but no calculations we could identify proved useful enough to incorporate in our process.
+
+We later used the category information to calculate a different similarity matrix. 
+Many properties belonged to multiple categories, and there were only 443 categories overall.
+In addition, the specific calculation used was to count full frequency: frequency of each property, summed over all properties.
+These factors combined to where the typical output of this similarity matrix was that device:cookie pairs often had maximum similarity. 
+This matrix was calculated for the entire training matrix, but it had no impact in our models: the relative influence in an H2O GBM model was 0.00\%.
+So neither feature was used in our final modeling.
+
+\section{Results}
+\subsection{Model analysis}
+Initially the high AUC was driven by the fact that when only one cookie shared an IP, it was almost always correct. 
+But as our features grew more complex, we measured the  F\textsubscript{0.5}  score performing as well or better when more than 10 cookies matched a device as when 3 matched, as shown in Figure 1.
+
+
+\subsection{Improvements during the modeling process}
+Table 2 shows the progression of our overall workflow. Our entire workflow was iterative, starting with IP commonality and a basic three-rule system of choosing the best cookies. From that model, major progress steps are shown, with the final leaderboard score, and the final leaderboard ranking of that model, if it were our best.
+
+% ToDo...Uncomment the figure - commented out since the figure is unavailable via GIT
+
+%\begin{figure}[H]
+%   \centering
+%   \includegraphics[width=400pt]{F05_by_DeviceCount.png}
+%   \caption{comparison of accuracy by number of cookies per device: (red) F0.5; (blue) number of devices in validation set}
+%   \label{fig:F05_by_DeviceCount}
+%\end{figure}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l l l r}
+\hline
+\textbf{Cookies per IP} & \textbf{Targets} & \textbf{Recall} & \textbf{Training Rows} \\
+\hline
+10 & 126,196 & 87.65\% & 946,987 \tabularnewline
+20 & 135,457 & 94.09\% & 2,647,903 \tabularnewline
+30 & 137,815 & 95.72\% & 5,967,693 \tabularnewline
+50 & 139,579 & 96.95\% & 9,268,530 \tabularnewline
+100 & 140,529 & 97.61\% & 18,952,539 \tabularnewline
+200 & 141,238 & 98.10\% & 60,909,729 \tabularnewline
+All & 141,324 & 98.16\% & 82,591,207 \tabularnewline
+\hline
+\end{tabular}
+\caption{Impact of cookie:ip threshold on recall and training size}\label{table:cookiesPerIp}
+\end{table}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{l l r r}
+\hline
+\textbf{Date} & \textbf{Improvement Description} & \textbf{Score} & \textbf{Rank} \tabularnewline
+\hline
+06/15/15 & Base model: 3-rule prediction & 0.4934 & 75 \tabularnewline
+07/18/15 & Addition of stage 1 model & 0.5769 & 57 \tabularnewline
+07/25/15 & Enhancement of device, cookie features & 0.6438 & 43 \tabularnewline
+08/06/15 & Addition of relative IP features & 0.7053 & 32 \tabularnewline
+08/16/15 & Updated selection algorithm & 0.7515 & 24 \tabularnewline
+08/20/15 & Drawbridge handle specifics & 0.8318 & 15 \tabularnewline
+08/22/15 & Addition of stage 2 model & 0.8526 & 12 \tabularnewline
+08/22/15 & Bagged models, added gap model & 0.8547 & 10 \tabularnewline
+08/24/15 & Improved stage 2 features & 0.855 & 10 \tabularnewline
+\hline
+\end{tabular}
+\caption{Workflow improvements over time}\label{table:leaderboard}
+\end{table}
+
+
+% The very first letter is a 2 line initial drop letter followed
+% by the rest of the first word in caps.
+% 
+% form to use if the first word consists of a single letter:
+% \IEEEPARstart{A}{demo} file is ....
+% 
+% form to use if you need the single drop letter followed by
+% normal text (unknown if ever used by IEEE):
+% \IEEEPARstart{A}{}demo file is ....
+% 
+% Some journals put the first two words in caps:
+% \IEEEPARstart{T}{his demo} file is ....
+% 
+% Here we have the typical use of a "T" for an initial drop letter
+% and "HIS" in caps to complete the first word.
+
+% (mal: added these comments
+%\IEEEPARstart{T}{his} demo file is intended to serve as a ``starter file''
+%for IEEE \textsc{Transactions on Magnetics} journal papers produced under \LaTeX\ using
+%IEEEtran.cls version 1.8a and later.
+%% You must have at least 2 lines in the paragraph with the drop letter
+%% (should never be an issue)
+%I wish you the best of success.
+
+%\hfill mds
+ 
+%\hfill September 17, 2014
+
+% needed in second column of first page if using \IEEEpubid
+%\IEEEpubidadjcol
+
+% An example of a floating figure using the graphicx package.
+% Note that \label must occur AFTER (or within) \caption.
+% For figures, \caption should occur after the \includegraphics.
+% Note that IEEEtran v1.7 and later has special internal code that
+% is designed to preserve the operation of \label within \caption
+% even when the captionsoff option is in effect. However, because
+% of issues like this, it may be the safest practice to put all your
+% \label just after \caption rather than within \caption{}.
+%
+% Reminder: the "draftcls" or "draftclsnofoot", not "draft", class
+% option should be used if it is desired that the figures are to be
+% displayed while in draft mode.
+%
+%\begin{figure}[!t]
+%\centering
+%\includegraphics[width=2.5in]{myfigure}
+% where an .eps filename suffix will be assumed under latex, 
+% and a .pdf suffix will be assumed for pdflatex; or what has been declared
+% via \DeclareGraphicsExtensions.
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure}
+
+% Note that IEEE typically puts floats only at the top, even when this
+% results in a large percentage of a column being occupied by floats.
+
+
+% An example of a double column floating figure using two subfigures.
+% (The subfig.sty package must be loaded for this to work.)
+% The subfigure \label commands are set within each subfloat command,
+% and the \label for the overall figure must come after \caption.
+% \hfil is used as a separator to get equal spacing.
+% Watch out that the combined width of all the subfigures on a 
+% line do not exceed the text width or a line break will occur.
+%
+%\begin{figure*}[!t]
+%\centering
+%\subfloat[Case I]{\includegraphics[width=2.5in]{box}%
+%\label{fig_first_case}}
+%\hfil
+%\subfloat[Case II]{\includegraphics[width=2.5in]{box}%
+%\label{fig_second_case}}
+%\caption{Simulation results for the network.}
+%\label{fig_sim}
+%\end{figure*}
+%
+% Note that often IEEE papers with subfigures do not employ subfigure
+% captions (using the optional argument to \subfloat[]), but instead will
+% reference/describe all of them (a), (b), etc., within the main caption.
+% Be aware that for subfig.sty to generate the (a), (b), etc., subfigure
+% labels, the optional argument to \subfloat must be present. If a
+% subcaption is not desired, just leave its contents blank,
+% e.g., \subfloat[].
+
+
+% An example of a floating table. Note that, for IEEE style tables, the
+% \caption command should come BEFORE the table and, given that table
+% captions serve much like titles, are usually capitalized except for words
+% such as a, an, and, as, at, but, by, for, in, nor, of, on, or, the, to
+% and up, which are usually not capitalized unless they are the first or
+% last word of the caption. Table text will default to \footnotesize as
+% IEEE normally uses this smaller font for tables.
+% The \label must come after \caption as always.
+%
+%\begin{table}[!t]
+%% increase table row spacing, adjust to taste
+%\renewcommand{\arraystretch}{1.3}
+% if using array.sty, it might be a good idea to tweak the value of
+% \extrarowheight as needed to properly center the text within the cells
+%\caption{An Example of a Table}
+%\label{table_example}
+%\centering
+%% Some packages, such as MDW tools, offer better commands for making tables
+%% than the plain LaTeX2e tabular which is used here.
+%\begin{tabular}{|c||c|}
+%\hline
+%One & Two\\
+%\hline
+%Three & Four\\
+%\hline
+%\end{tabular}
+%\end{table}
+
+
+% Note that the IEEE does not put floats in the very first column
+% - or typically anywhere on the first page for that matter. Also,
+% in-text middle ("here") positioning is typically not used, but it
+% is allowed and encouraged for Computer Society conferences (but
+% not Computer Society journals). Most IEEE journals/conferences use
+% top floats exclusively. 
+% Note that, LaTeX2e, unlike IEEE journals/conferences, places
+% footnotes above bottom floats. This can be corrected via the
+% \fnbelowfloat command of the stfloats package.
+
+
+
+
+\section{Conclusion}
+
+This report details team H2O.ai and SRK's approach to ICDM 2015: Drawbridge Cross-Device Connections competition. 
+Our team finished in 10th place in the public and private leaderboard with an F\textsubscript{0.5} score of 0.855150. 
+We treated the problem as binomial classification of a general cookie match, with respect to each individual device. 
+Therefore, most features were relative. 
+Most of our team's effort was spent generating features to compare devices and cookies that co-occurred in an IP matrix.
+We found the most powerful features to be those that targeted cookies with minimal transaction history.
+Though no explicit negative training examples were provided, by working with IP co-occurrences, we were able to work through a binary classification modeling framework that was consistent in training and testing.
+
+
+
+% if have a single appendix:
+%\appendix[Proof of the Zonklar Equations]
+% or
+%\appendix  % for no appendix heading
+% do not use \section anymore after \appendix, only \section*
+% is possibly needed
+
+% use appendices with more than one appendix
+% then use \section to start each appendix
+% you must declare a \section before using any
+% \subsection or using \label (\appendices by itself
+% starts a section numbered zero.)
+%
+
+
+%\appendices
+%\section{Proof of the First Zonklar Equation}
+%Appendix one text goes here.
+
+% you can choose not to have a title for an appendix
+% if you want by leaving the argument blank
+%\section{}
+%Appendix two text goes here.
+
+
+% use section* for acknowledgment
+%\section*{Acknowledgment}
+
+
+%The authors would like to thank...
+
+
+% Can use something like this to put references on a page
+% by themselves when using endfloat and the captionsoff option.
+%\ifCLASSOPTIONcaptionsoff
+%  \newpage
+%\fi
+
+
+
+% trigger a \newpage just before the given reference
+% number - used to balance the columns on the last page
+% adjust value as needed - may need to be readjusted if
+% the document is modified later
+%\IEEEtriggeratref{8}
+% The "triggered" command can be changed if desired:
+%\IEEEtriggercmd{\enlargethispage{-5in}}
+
+% references section
+
+% can use a bibliography generated by BibTeX as a .bbl file
+% BibTeX documentation can be easily obtained at:
+% http://www.ctan.org/tex-archive/biblio/bibtex/contrib/doc/
+% The IEEEtran BibTeX style support page is at:
+% http://www.michaelshell.org/tex/ieeetran/bibtex/
+%\bibliographystyle{IEEEtran}
+% argument is your BibTeX string definitions and bibliography database(s)
+%\bibliography{IEEEabrv,../bib/paper}
+%
+% <OR> manually copy in the resultant .bbl file
+% set second argument of \begin to the number of references
+% (used to reserve space for the reference number labels box)
+
+%\begin{thebibliography}{1}
+
+%\bibitem{IEEEhowto:kopka}
+%\bibitem{Ridgeway:1999}
+%G. Ridgeway (1999). ``The state of boosting,'' \textit{Computing Science and Statistics}
+%31:172-181.
+
+%H.~Kopka and P.~W. Daly, \emph{A Guide to \LaTeX}, 3rd~ed.\hskip 1em plus
+%  0.5em minus 0.4em\relax Harlow, England: Addison-Wesley, 1999.
+
+%\end{thebibliography}
+
+% biography section
+% 
+% If you have an EPS/PDF photo (graphicx package needed) extra braces are
+% needed around the contents of the optional argument to biography to prevent
+% the LaTeX parser from getting confused when it sees the complicated
+% \includegraphics command within an optional argument. (You could create
+% your own custom macro containing the \includegraphics command to make things
+% simpler here.)
+%\begin{IEEEbiography}[{\includegraphics[width=1in,height=1.25in,clip,keepaspectratio]{mshell}}]{Michael Shell}
+% or if you just want to reserve a space for a photo:
+
+%\begin{IEEEbiography}{Michael Shell}
+%Biography text here.
+%\end{IEEEbiography}
+
+% if you will not have a photo at all:
+%\begin{IEEEbiographynophoto}{John Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
+
+% insert where needed to balance the two columns on the last page with
+% biographies
+%\newpage
+
+%\begin{IEEEbiographynophoto}{Jane Doe}
+%Biography text here.
+%\end{IEEEbiographynophoto}
+
+% You can push biographies down or up by placing
+% a \vfill before or after them. The appropriate
+% use of \vfill depends on what kind of text is
+% on the last page and whether or not the columns
+% are being equalized.
+
+%\vfill
+
+% Can be used to pull up biographies so that the bottom of the last one
+% is flush with the other column.
+%\enlargethispage{-5in}
+
+
+
+% that's all folks
+\end{document}
+
+
