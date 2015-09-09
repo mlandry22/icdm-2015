@@ -451,26 +451,25 @@ Final global AUC at this stage was approximately 0.995.
 
 
 \subsubsection{Gap Model: Device-Device}
-Due to filters applied in the initial step, as described in Section 2.2.1, we had devices in the test set that had no applicable cookie and devices with only a cookie containing a -1 Drawbridge handle.
-Our first attempt of using larger hardware and relaxing the threshold on cookies per IP; however, it still took too long to be effective.
+Due to filters applied in the initial step (See Section 2.2.1), we had devices in the test set that had no applicable cookie and devices with only a cookie containing a -1 Drawbridge handle (Sentence is a bit ambigious)
+Our first attempt of using larger hardware and relaxing the threshold on cookies per IP; however, it still took too long to be effective. Note - In our first attempt, we relaxed the threshold on cookies per IP and ran it on systems with more memory and faster processors; however, the numerical approach we choose would not complete in a reasonable timeframe.
 So, we created a model that used devices sharing a common IP. This model was setup as binary classification to find the best device match and then use all cookies associated with that device.
-Gradient boosted machines were used for this model as well, specifically the H2O implementation. Due to timing constraints, we used minimal training data and no validation data, so our only measurable result was leaderboard improvement, which showed the model to have a small, but meaningful improvement.
+This model used H20's implementation of Gradiest Boosted Machines (GBM). To minimize time constraints, we used minimal training data and no validation data. The results of this activity led to a demonstrable leaderboard improvement. 
 
 \subsubsection{Final Selection}
-A separate model was utilized to choose the best cookies, given the probabilities from the prior stage. 
-Initially this was a simple method that chose a single threshold or the top-ranking cookie. 
-A later version utilized cookies with a probability over 0.9, or those within 0.05 of the highest probability cookie per device, which increased recall for uncertain devices.
-
+Given the probabilities from the prior stage, a separate model was utilized to choose the best cookies. 
+Initially, this was a simple method that provided either a single threshold or the top-ranking cookie. 
+A later version utilized cookies with a probability over 0.9 (or those within 0.05 of the highest probability cookie per device), which further increased recall for uncertain devices.
 
 \section{Calculations}
 \subsection{Features: Cookie-Device, Stage 1}
-We provided all features available directly from the applicable cookie data and device data.
-But our most useful features were those that utilized IP behavior by cookie and device.
+We provided all (literally all features or the features we had constructed?) features available directly from the applicable cookie data and device data.
+In our experience, we determined that the most useful features were those that utilized IP behavior by cookie and device.
 The best of those features compared the behavior of the cookie or device on the particular IP that was shared to the behavior of the cookie or device across all IPs.
 
-For a given device-cookie combination, we obtained all the IPs that are common to both device and cookie, say Common IPs. 
-Also we obtained all the IPs that are associated with the cookie, say Cookie IPs. 
-Each IP had a set of attributes such as ip-freq-count and anonymized variables like idxip-anonymous-c1 and idxip-anonymous-c2. 
+For a given device-cookie combination, we obtained all the IPs that are common to both device and cookie. We will reference this combination as Common IPs. 
+Also, we obtained all the IPs that are associated with the cookie (i.e., Cookie IPs). 
+Each IP had a set of attributes such as "ip-freq-count" and anonymized variables like "idxip-anonymous-c1" and "idxip-anonymous-c2". 
 We summed up all these atrribute values for all the IPs present in both Common IPs and the Cookie IPs separately and then finally took a ratio of it.
 
 The most useful feature to our GBM, as measured by relative influence, was cookie-c3-common-ip-by-all-ip, which belonged to a class of features that all possessed much higher Pearson correlation with our target than any other feature (0.447 - 0.504 vs highest other at 0.322)
@@ -506,8 +505,10 @@ Common IPs = IPs associated with the given device (intersection) IPs associated 
 Cookie IPs = IPs associated with the given cookie
 \end{footnotesize}
 
-The reason we think these features worked well is that, these features capture the percentage contribution of Common IPs to the Cookie IPs. 
-For example, if the summation of frequency of Common IPs is a high percentage of summation of frequency of Cookie IPs, then it means that those remaining IPs present in the Cookie IPs have very low frequency counts and hence very less contribution, so there may be a high probability of given device-cookie pair to be the correct one. 
+The reason why we think these features worked well is that these features capture the percentage contribution of Common IPs to the Cookie IPs. 
+For example, if the summation of frequency of Common IPs is a high percentage of summation of frequency of Cookie IPs, then it means that those remaining IPs present in the Cookie IPs have very low frequency counts and hence very less contribution, so there may be a high probability of given device-cookie pair to be the correct one. (Note - need to break this sentence....it's a run-on as is).
+
+Note - Start here
 Alternatively, if the summation of frequency of Common IPs is a less percentage of summation of frequency of Cookie IPs, then it means that the remaining IPs present in the Cookie IPs contribute to most part of the frequency and so the given device-cookie may not be the right choice.
 
 \subsection{Features: Cookie-Device, Stage 2}
