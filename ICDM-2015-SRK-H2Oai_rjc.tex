@@ -446,7 +446,7 @@ Therefore, our intention for the second model was to create features that would 
 
 Ideally, the first stage model would have been run using a method such as k-fold cross-validation so that we would have access to out-of-sample estimates for all data in our development set.
 However, we added the second stage model late in the competition and chose to subdivide the validation set of the first stage into another development:validation set, again in an 80\%:20\% ratio.
-This second stage model was formulated identically to the first, as binary classification of a general device:cookie match, using XGBoost. 
+This second stage model was formulated identically to the first, as binary classification of a general device:cookie match, using XGBoost. Note - Do we want to explain why we went from H20 to XGBoost?
 Final global AUC at this stage was approximately 0.995. 
 
 
@@ -526,9 +526,10 @@ The IP ids of these devices were obtained and all other devices using those same
 Counts of common IP addresses and total IP addresses per device were used as features.
 
 \subsection{Unused Features: Property Information}
-We calculated two instances of cosine similarity between cookies and devices using property information, but neither was helpful for our models, and neither was used in the final modeling process.
+We calculated two instances of cosine similarity between cookies and devices using property information. Unfortunately, this did not yield any meaningful results and was not used in the final modeling process.
+
 The first method used raw property information with a binary presence/absence flag (as opposed to frequency counts).
-Using the property IDs directly led to very little overlap, so cosine similarity in this matrix was often 0, even for positive matches. We found this feature to be minimally correlated with the target.
+Using the property IDs directly led to very little overlap, so cosine similarity in this matrix was often 0 (even for positive matches). We found this feature to be minimally correlated with the target.
 Prior to calculating the similarity for every device in our validation set, we analyzed potential usage of a 10\% sample by number of potential matches and as a ratio of the maximum similarity, but no calculations we could identify proved useful enough to incorporate in our process.
 
 We later used the category information to calculate a different similarity matrix. 
@@ -540,12 +541,12 @@ So neither feature was used in our final modeling.
 
 \section{Results}
 \subsection{Model analysis}
-Initially the high AUC was driven by the fact that when only one cookie shared an IP, it was almost always correct. 
+Initially, the high AUC was driven by the fact that when only one cookie shared an IP; it was almost always correct. 
 But as our features grew more complex, we measured the  F\textsubscript{0.5}  score performing as well or better when more than 10 cookies matched a device as when 3 matched, as shown in Figure 1.
 
 
 \subsection{Improvements during the modeling process}
-Table 2 shows the progression of our overall workflow. Our entire workflow was iterative, starting with IP commonality and a basic three-rule system of choosing the best cookies. From that model, major progress steps are shown, with the final leaderboard score, and the final leaderboard ranking of that model, if it were our best.
+Table 2 shows the progression of our overall workflow. Our entire workflow was iterative, starting with IP commonality and a basic three-rule system of choosing the best cookies. From that model, major progress steps are shown, with the final leaderboard score, and the final leaderboard ranking of that model.
 
 % ToDo...Uncomment the figure - commented out since the figure is unavailable via GIT
 
